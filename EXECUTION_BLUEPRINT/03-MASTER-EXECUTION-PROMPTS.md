@@ -12576,16 +12576,16 @@ G. COMPLETION CONTRACT
 
 ## الأوراق المُغطاة ولم تُنفَّذ
 
-| الورقة | المحتوى | حالة المصدر |
-|---|---|---|
-| `43_COMMERCE_OVERVIEW` | ثماني قدرات تجارية `COM-01..COM-08` | `DESIGN ONLY` |
-| `44_TENANT_BLUEPRINT` | ثمانية كيانات مستأجرين (جزء منها مُنفَّذ في `PHASE-01`) | `DESIGN ONLY` |
-| `45_AGENT_MARKETPLACE` | تسعة حقول كتالوج الوكلاء | `SPEC` |
-| `46_AGENT_STUDIO` | ثماني مراحل استوديو الوكلاء | `SPEC` |
-| `47_WHITE_LABEL_PORTAL` | خمسة أنماط تسليم بعلامة بيضاء | `SPEC` |
-| `48_BILLING_CONTRACTS` | ستة SKUs للفوترة | `SPEC` |
-| `53_B2B_API_CONTRACT` | تسع عمليات API للأعمال | `SPEC` |
-| `55_REQUIREMENTS_DELTA` | عشرة فروق `D01..D10` | `P0` داخل نطاق B2B المؤجل |
+| الورقة                  | المحتوى                                                 | حالة المصدر               |
+| ----------------------- | ------------------------------------------------------- | ------------------------- |
+| `43_COMMERCE_OVERVIEW`  | ثماني قدرات تجارية `COM-01..COM-08`                     | `DESIGN ONLY`             |
+| `44_TENANT_BLUEPRINT`   | ثمانية كيانات مستأجرين (جزء منها مُنفَّذ في `PHASE-01`) | `DESIGN ONLY`             |
+| `45_AGENT_MARKETPLACE`  | تسعة حقول كتالوج الوكلاء                                | `SPEC`                    |
+| `46_AGENT_STUDIO`       | ثماني مراحل استوديو الوكلاء                             | `SPEC`                    |
+| `47_WHITE_LABEL_PORTAL` | خمسة أنماط تسليم بعلامة بيضاء                           | `SPEC`                    |
+| `48_BILLING_CONTRACTS`  | ستة SKUs للفوترة                                        | `SPEC`                    |
+| `53_B2B_API_CONTRACT`   | تسع عمليات API للأعمال                                  | `SPEC`                    |
+| `55_REQUIREMENTS_DELTA` | عشرة فروق `D01..D10`                                    | `P0` داخل نطاق B2B المؤجل |
 
 ## ما نُفِّذ فعلاً من هذه الأوراق في مراحل أخرى
 
