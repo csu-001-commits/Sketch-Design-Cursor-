@@ -4,7 +4,7 @@
 # The Arabic narrative for every domain lives in 01-DEEP-ANALYSIS.md.
 #
 # source_ref  = <sheet numeric prefix>:<Excel row>  e.g. 02:r2 = sheet "02_قرارات_معمارية" row 2.
-#               Sheet prefixes are identical in workbook v10 and markdown export v11.
+#               All refs point into the single source: Sketch_Design_Model_Gateway_Observability_v11.md
 # class       = CONFIRMED (stated by the source) | DERIVED (logically necessary consequence)
 #               | PROPOSED (engineering recommendation, not in source) | UNKNOWN (cannot be established)
 # source_state= the readiness word the SOURCE itself uses. It is never a claim by this blueprint.
@@ -200,6 +200,6 @@ REQ-OPN-01	67:r2	unknown	Whether a deployed Sketch Design runtime, VPS, integrat
 REQ-OPN-02	30:r14	unknown	Numeric targets for finding precision, finding recall, citation validity, workflow failure rate, time to signed delivery and cost per workflow are TBD and may only be set from a real baseline.	UNKNOWN	TBD	P0	PHASE-14	baseline measurement before threshold setting
 REQ-OPN-03	19:r5-r35	unknown	All commercial rates, provider token rates, tool rates, reviewer rates, PMO rates, risk reserve, PSP fees and target margin are zero or unset in the source and must be supplied from executed contracts.	UNKNOWN	0	P0	PHASE-08	rate card provided by owner
 REQ-OPN-04	00:r12-r13	unknown	The source carries conflicting version and date markers: cover states v6.0 dated 04 October 2026 while rows and sheets reference v7, v8, v9, v10 and v11 content in one artifact.	CONFIRMED	conflict	P1	PHASE-00	owner confirms authoritative version
-REQ-OPN-05	29:r2-r8;67:r2-r9	unknown	Two different execution plans coexist: the product roadmap on sheet 29 sequences villa MVP before platform expansion, while the v10 release plan on sheet 67 sequences admin, agent lifecycle, connector vault and model routing first.	CONFIRMED	conflict	P0	PHASE-00	owner ratifies the reconciled sequence
+REQ-OPN-05	29:r2-r8;67:r2-r9	unknown	Two different execution plans coexist: the product roadmap on sheet 29 sequences villa MVP before platform expansion, while the release plan on sheet 67 (the audit layer whose sibling sheet is named 68_README_V10) sequences admin, agent lifecycle, connector vault and model routing first.	CONFIRMED	conflict	P0	PHASE-00	owner ratifies the reconciled sequence
 REQ-OPN-06	00:r17	unknown	The visual identity is a temporary wordmark embedded in the workbook and must be replaced by the official logo when supplied.	CONFIRMED	TEMPORARY	P2	PHASE-00	official brand asset supplied
 REQ-OPN-07	57:r7	unknown	Enterprise reliability of a free or local model baseline is unproven; paid and direct providers must be benchmarked before reliance.	CONFIRMED	UNVERIFIED	P0	PHASE-14	golden-set evaluation report

@@ -216,8 +216,8 @@ def build_traceability(
     out.append("\n## قراءة `source_ref`\n\n")
     out.append(
         "الصيغة `<رقم الورقة>:<صف Excel>`. مثال: `02:r2` تعني الورقة\n"
-        "`02_قرارات_معمارية` الصف 2. أرقام الأوراق متطابقة بين ملف العمل v10\n"
-        "والتصدير v11.\n"
+        "`02_قرارات_معمارية` الصف 2. وكل المراجع تشير إلى المصدر الوحيد:\n"
+        "`Sketch_Design_Model_Gateway_Observability_v11.md`.\n"
     )
 
     out.append(f"\n## ملخص التغطية (تاريخ التوليد {today})\n\n")

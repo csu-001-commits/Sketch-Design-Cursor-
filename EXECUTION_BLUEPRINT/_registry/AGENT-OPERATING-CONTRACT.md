@@ -10,11 +10,20 @@
 
 ## 0. Status of the source material
 
-The requirements behind this blueprint come from one source artifact: the
-Sketch Design workbook, exported as
-`Sketch_Design_Model_Gateway_Observability_v11.md` (77 sheets; sheets 00–68 are
-identical in substance to the earlier `..._Agents_Operations_Audit_v10.xlsx`, and
-sheets 70–77 are new in v11).
+The requirements behind this blueprint come from exactly one source artifact:
+`Sketch_Design_Model_Gateway_Observability_v11.md`, a 77-sheet Markdown export
+of the Sketch Design workbook. Every requirement reference in
+`EXECUTION_BLUEPRINT/_registry/requirements.tsv` points into it as
+`<sheet number>:<row>`.
+
+That export states about itself that it carries every populated worksheet cell
+including formula expressions, but that Excel-specific interactive features and
+visual styling cannot be represented. So cell comments, dropdown validation,
+conditional formatting, charts, images and defined names are outside this
+blueprint's coverage, and their absence rests on the export's own statement
+rather than on an independent inspection of the binary workbook. If you are
+told a requirement exists that you cannot find in the export, do not reconstruct
+it from memory — ask for it.
 
 The source describes an **architecture and operating baseline**. It states about
 itself, in its own words, that it is "not proof that the platform is built or
