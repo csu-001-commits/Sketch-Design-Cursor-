@@ -1,0 +1,63 @@
+# Sketch Design — V2 Requirement Delta Registry (machine-readable)
+# Source: Sketch_Design_Ultimate_Master_Reference_2026.docx (MASTER EDITION 2026.10, CONTROLLED CONCEPT BASELINE)
+# These are requirements the Ultimate Master Reference adds to, or restates with changed authority over,
+# the v11 workbook already inventoried in EXECUTION_BLUEPRINT/_registry/requirements.tsv.
+# source_state preserves the reference's OWN decision word. It is never upgraded here.
+# Columns are machine-readable identifiers and are therefore in English by design.
+#
+req_id	source_ref	domain	statement_en	class	source_state	criticality	prompt_ref
+UR-001	UR:02	brand	Official identity is Sketch Design with the user-approved pencil + architectural plan mark, its distinctive lettering and the "PLANS. DRAWINGS. DESIGN." tagline; the retired parent brand must not be used.	CONFIRMED	Approved direction	HIGH	P12
+UR-002	UR:02	brand	Original vector artwork must be obtained for final production; raster concepts are not substitutes for master brand assets.	CONFIRMED	Approved direction	MEDIUM	P12
+UR-003	UR:02	brand	Design tokens: primary deep navy #0C1B38, action/focus cobalt #1258D9, surface off-white #FAFBFD with restrained blue-gray borders, warm gold accent used sparingly and never for primary controls. The reference labels these approximate.	CONFIRMED	Approved direction (approximate token values)	HIGH	P12
+UR-004	UR:00	brand	Arabic-first RTL experience with a premium, calm architectural visual language and engineering-native interfaces.	CONFIRMED	Approved direction	HIGH	P12
+UR-005	UR:02	brand	Prohibited visual register: neon sci-fi, purple AI gradients, decorative bots, fabricated progress.	CONFIRMED	Approved direction	HIGH	P12
+UR-006	UR:00	commerce	Launch as the operator's own service first; preserve tenant-aware contracts for a later managed B2B offering.	CONFIRMED	Approved direction	HIGH	P02
+UR-007	UR:03	commerce	Institutions do not buy agent seats in the initial release; "Contact Sales" creates a lead and a managed onboarding process.	CONFIRMED	Approved direction	HIGH	P13
+UR-008	UR:03	identity	Individuals and engineers may self-register subject to verification rules.	CONFIRMED	Approved direction	HIGH	P02
+UR-009	UR:03	workflow	Visible workflow is event-driven from actual server state across queued, validating, running, waiting-for-input, human-review, completed and failed.	CONFIRMED	Specification	CRITICAL	P04
+UR-010	UR:03	workflow	No simulated progress and no invented time-to-completion may be displayed.	CONFIRMED	Specification	CRITICAL	P04
+UR-011	UR:03	findings	Every finding links to source evidence, an artifact, an agent execution and a reviewer disposition.	CONFIRMED	Specification	CRITICAL	P11
+UR-012	UR:04	architecture	Frontend and Admin Console never invoke agent tools, provider keys or database tables directly.	CONFIRMED	Boundary (must not be violated)	CRITICAL	P01
+UR-013	UR:04	admin	Admin is a separate control interface; backend policies enforce authorization and change approvals.	CONFIRMED	Boundary (must not be violated)	CRITICAL	P16
+UR-014	UR:04	agent	Agent Runtime executes registered capabilities under a scoped task identity and a tool allowlist.	CONFIRMED	Boundary (must not be violated)	CRITICAL	P07
+UR-015	UR:04	gateway	Model Gateway is a shared production service, not an agent and not a browser feature.	CONFIRMED	Boundary (must not be violated)	CRITICAL	P05
+UR-016	UR:04	knowledge	Knowledge retrieval is source-governed; code references require license, version, effective date and jurisdiction.	CONFIRMED	Boundary (must not be violated)	CRITICAL	P09
+UR-017	UR:04	tenancy	Data, object storage, vector retrieval, event logs and backups must respect project and tenant boundaries.	CONFIRMED	Boundary (must not be violated)	CRITICAL	P02
+UR-018	UR:04	data	Core entity set is fixed: Tenant (reserved from day one), Organization, User, Role, Project, Site, Request, EvidencePackage, CaptureSession, Drawing, AgentDefinition, AgentVersion, WorkflowRun, TaskRun, ModelInvocation, Finding, ReviewDecision, Deliverable, AuditEvent, UsageRecord, Subscription/Entitlement (future).	CONFIRMED	Specification	HIGH	P03
+UR-019	UR:04	api	Minimum API surface is nine named endpoints; the reference marks the contracts illustrative, so shapes are DESIGNED and require ratification before implementation.	CONFIRMED	Illustrative contracts	HIGH	P04
+UR-020	UR:05	agent	An agent is a versioned capability bundle carrying purpose, input/output schemas, allowed tools, evidence policy, validation rules, escalation threshold, model policy, evaluation suite, cost/latency budget and rollback target.	CONFIRMED	Specification	CRITICAL	P07
+UR-021	UR:05	agent	Seven capability families each carry a named review boundary: Architecture, Structure, MEP, Cost/BOQ, Compliance, Evidence/Scan, Delivery/QA.	CONFIRMED	Specification	CRITICAL	P07
+UR-022	UR:05	workflow	The villa golden workflow is a fixed ten-step sequence from intake and consent through versioned report and delivery.	CONFIRMED	Specification	CRITICAL	P10
+UR-023	UR:05	workflow	Failed tasks can retry safely without duplicating billable side effects.	CONFIRMED	Specification	CRITICAL	P04
+UR-024	UR:05	agent	Agent version and provenance are pinned per workflow run; production promotion requires staged evaluation and human approval.	CONFIRMED	Specification	CRITICAL	P07
+UR-025	UR:05	agent	Typed inputs and outputs, JSON schema validation and source attribution are required for critical findings.	CONFIRMED	Specification	CRITICAL	P07
+UR-026	UR:05	security	Tools run under least privilege with timeouts, quotas, cancellation and audit traces.	CONFIRMED	Specification	CRITICAL	P07
+UR-027	UR:05	reliability	Circuit breakers, durable queues, dead-letter handling, idempotency keys and compensating actions are required.	CONFIRMED	Specification	CRITICAL	P04
+UR-028	UR:05	security	Prompt injection defense is required at document and retrieval boundaries; untrusted files never change policies.	CONFIRMED	Specification	CRITICAL	P09
+UR-029	UR:06	gateway	The legacy AI Core, local free-model assumptions and the old VPS stack are retired from the target architecture; a clean deployment is required.	CONFIRMED	Approved direction	CRITICAL	P00
+UR-030	UR:06	gateway	Durable execution, usage ledger, cost accounting and fallback are preserved as new, independently tested services rather than reused implementations.	CONFIRMED	Approved direction	CRITICAL	P06
+UR-031	UR:06	gateway	No named vendor or model is approved until procurement, data-policy and benchmark gates pass.	CONFIRMED	Needs procurement/validation	CRITICAL	P05
+UR-032	UR:06	gateway	Routing sequence is fixed: task classification, sensitivity/residency gate, deterministic-tool eligibility, modality and Arabic proficiency, candidate allowlist, quality and latency SLO, price/capacity-aware choice, execution, output validation, approved fallback or human escalation.	CONFIRMED	Specification	CRITICAL	P05
+UR-033	UR:06	gateway	Four provider tiers each carry an entry requirement: direct enterprise providers, approved aggregation gateway, deterministic engines, embedding/retrieval.	CONFIRMED	Specification	HIGH	P05
+UR-034	UR:06	gateway	No silent routing to unapproved endpoints.	CONFIRMED	Specification	CRITICAL	P05
+UR-035	UR:06	gateway	Six token-efficiency measures are mandated and must not degrade quality: task-scoped retrieval, versioned prompt caching, provenance-preserving compression, structured extraction over generative repetition, policy limits on loops and output size, and deduplication within an authorized project context.	CONFIRMED	Specification	HIGH	P06
+UR-036	UR:06	observability	Seven operations metric families are required: queue depth/age/wait p95; latency p50/p95/p99 and TTFT; requests per minute and tokens per second; 429/5xx/timeouts and fallback success; token and SAR cost by agent and project; eval pass, citation quality and review override; GPU/CPU/RAM/DB/storage.	CONFIRMED	Specification	HIGH	P17
+UR-037	UR:06	admin	Dashboard actions are enumerated, and all destructive or financial actions require explicit authorization and audit.	CONFIRMED	Specification	CRITICAL	P16
+UR-038	UR:07	scan	Mobile-responsive web camera first, with native LiDAR capture as an optional companion using RoomPlan/ARKit on supported iOS devices; universal browser LiDAR must not be promised.	CONFIRMED	Approved direction	CRITICAL	P14
+UR-039	UR:07	scan	Eight camera surface controls carry defined behavior: capture photo, video, live analysis, LiDAR scan handoff, measure, evidence list, privacy, offline/poor network.	CONFIRMED	Specification	HIGH	P14
+UR-040	UR:07	scan	The Evidence Package contract carries project ID, capture ID, device capability, modality, consent record, location precision policy, timestamp, file hashes, original media references, geometry representation, coordinate units, measurement confidence, quality flags, model/tool provenance, processing state and review state.	CONFIRMED	Specification	CRITICAL	P03
+UR-041	UR:07	scan	Camera-derived geometry is preliminary evidence; no structural assurance, permit compliance or certified dimensions may be issued solely from live camera output.	CONFIRMED	Safety boundary	CRITICAL	P14
+UR-042	UR:08	admin	Founder, platform admin, security, support, engineering reviewer, finance and read-only auditor are separate roles.	CONFIRMED	Specification	CRITICAL	P16
+UR-043	UR:08	admin	The administrative capability matrix fixes eight capabilities against admin, support and reviewer roles.	CONFIRMED	Specification	CRITICAL	P16
+UR-044	UR:08	operations	Five operational playbooks are required: incident, maintenance, integration lifecycle, support privacy, SRE.	CONFIRMED	Specification	HIGH	P17
+UR-045	UR:09	commerce	Commercial phasing is fixed at three phases; multi-tenant boundaries exist in the domain and authorization model now, while public self-service marketplace, full white-label builder and automated multi-tenant billing are deferred.	CONFIRMED	Approved direction	HIGH	P02
+UR-046	UR:09	expansion	Five future B2B offers are defined: managed agent pack, monthly subscription, white-label hosted portal, embedded/API service, enterprise agreement.	CONFIRMED	Deferred	LOW	P02
+UR-047	UR:09	tenancy	No tenant cross-access in data, RAG, logs, cached prompts, tool actions, files or billing; branding does not grant control of platform security policies.	CONFIRMED	Guardrail	CRITICAL	P02
+UR-048	UR:10	delivery	The delivery roadmap fixes eight stages, each with a named deliverable and exit evidence.	CONFIRMED	Specification	HIGH	P00
+UR-049	UR:10	governance	Seven release gates each require evidence and are listed explicitly.	CONFIRMED	Specification	CRITICAL	P20
+UR-050	UR:11	governance	The source register names six underlying sources and the decision ledger records the state of each decision.	CONFIRMED	Specification	HIGH	P00
+UR-051	UR:11	governance	Document governance is role-assigned: product owner approves changes, engineering leads own implementation evidence, security reviews data and provider policies, qualified engineers own professional sign-off.	CONFIRMED	Specification	HIGH	P00
+UR-052	UR:00	governance	Attached images are approved-direction visual concepts, not screenshots of a working platform.	CONFIRMED	Document status	CRITICAL	P12
+UR-053	UR:10	security	Release requires no P0 security vulnerability and no unauthorized cross-project access.	CONFIRMED	Release gate	CRITICAL	P18
+UR-054	UR:10	reliability	Restore and rollback must be verified, not merely documented.	CONFIRMED	Release gate	CRITICAL	P17
+UR-055	UR:10	compliance	Saudi privacy, sectoral obligations, IP and code licensing must be reviewed by qualified counsel and experts.	CONFIRMED	Needs legal/engineering review	CRITICAL	P18
