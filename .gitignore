@@ -1,0 +1,11 @@
+# Delivery archives. These are packaged from the tracked sources for handoff
+# when pushing to this remote is unavailable, so committing them would store a
+# second, drifting copy of content that is already under version control.
+# Rebuild with:
+#   tar czf SKETCH-DESIGN-PRODUCTION-EXECUTION-V2.tar.gz \
+#       SKETCH_DESIGN_PRODUCTION_EXECUTION_MASTER_V2.md execution
+*.tar.gz
+
+# Python bytecode from execution/_tools and EXECUTION_BLUEPRINT/_tools
+__pycache__/
+*.pyc
