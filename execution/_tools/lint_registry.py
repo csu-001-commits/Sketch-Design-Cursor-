@@ -82,7 +82,17 @@ def read_tsv(path, cols):
     return rows
 
 
-def check_sources(rows, gap_text):
+def gap_sections(text):
+    """The body of each '### GAP-..' block, so a source_id mentioned only in the
+    summary table cannot satisfy the NOT_SUPPLIED requirement."""
+    out = []
+    for block in re.split(r"\n#{3}\s+", text)[1:]:
+        if block.startswith("GAP-"):
+            out.append(block)
+    return out
+
+
+def check_sources(rows, gap_text, repo_root):
     seen = set()
     for r in rows:
         sid = r["source_id"]
@@ -100,16 +110,35 @@ def check_sources(rows, gap_text):
             if not SHA256.match(digest):
                 err("%s is %s but sha256 is %r — a source is described only if it was hashed"
                     % (sid, state, digest))
+        elif state == "AVAILABLE_AS_REPOSITORY":
+            if digest != "-":
+                err("%s is AVAILABLE_AS_REPOSITORY but carries a digest %r; a hashable "
+                    "file belongs in AVAILABLE" % (sid, digest))
+            paths = re.findall(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_./-]*", r["coverage_notes"])
+            if not any(os.path.exists(os.path.join(repo_root, p.rstrip("/.")))
+                       for p in paths):
+                err("%s is AVAILABLE_AS_REPOSITORY but its coverage_notes name no path "
+                    "that exists in this repository" % sid)
         elif state == "NOT_SUPPLIED":
             if digest != "-":
                 err("%s is NOT_SUPPLIED but carries a digest %r" % (sid, digest))
-            # Test 3: NOT_SUPPLIED requires a gap entry naming it.
-            if sid not in gap_text:
-                err("%s is NOT_SUPPLIED but gap-report.md never names it" % sid)
+            # Test 3: NOT_SUPPLIED requires a GAP section naming it. A mention
+            # in the summary table does not count.
+            if not any(sid in b for b in gap_sections(gap_text)):
+                err("%s is NOT_SUPPLIED but no '### GAP-' section names it" % sid)
     return seen
 
 
+def known_prompt_ids():
+    d = os.path.join(ROOT, "prompts")
+    if not os.path.isdir(d):
+        return set()
+    return {f.split("_", 1)[0] for f in os.listdir(d)
+            if f.endswith(".md") and f != "README.md"}
+
+
 def check_ledger(rows):
+    prompts = known_prompt_ids()
     seen = set()
     for r in rows:
         did = r["decision_id"]
@@ -120,6 +149,13 @@ def check_ledger(rows):
         if r["source_state"] not in LEDGER_STATES:
             err("%s: source_state %r was paraphrased; it must be the reference's own wording"
                 % (did, r["source_state"]))
+        blocks = r["blocks_prompts"]
+        if blocks != "-" and prompts:
+            for pid in blocks.split(","):
+                pid = pid.strip()
+                if pid and pid not in prompts:
+                    err("%s: blocks_prompts names %r, which is not a prompt in "
+                        "execution/prompts/" % (did, pid))
 
 
 def main():
@@ -131,7 +167,7 @@ def main():
 
     sources = read_tsv(SOURCES, SOURCE_COLS)
     ledger = read_tsv(LEDGER, LEDGER_COLS)
-    ids = check_sources(sources, gap_text)
+    check_sources(sources, gap_text, os.path.dirname(ROOT))
     check_ledger(ledger)
 
     if sources and not any(r["supplied"] == "AVAILABLE" for r in sources):

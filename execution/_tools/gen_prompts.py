@@ -176,16 +176,24 @@ def main():
         index.append("| [%s](%s.md) | %s | %s | %s | %s |" % (
             name, name, p["stage"], p["prereq"], p["reqs"], p.get("status", "DESIGNED")))
     index.append("")
-    done = [p for p in PROMPTS if p.get("status", "DESIGNED") != "DESIGNED"]
+    done = [p for p in PROMPTS if p.get("executed")]
+    blocked = [p for p in PROMPTS if p.get("status") == "BLOCKED"]
     index.append("## الحالات")
     index.append("")
     if done:
         n = len(done)
         count = {1: "أمر واحد", 2: "أمران"}.get(n, "%d أوامر" % n if n < 11 else "%d أمرًا" % n)
-        index.append("نُفِّذ من هذه الحزمة %s: %s، وله سجل تنفيذ بأدلته داخل ملفه."
-                     % (count, "، ".join("`%s`" % d["id"] for d in done)))
+        pron = "وله" if n == 1 else "ولكل منها"
+        index.append("نُفِّذ من هذه الحزمة %s: %s، %s سجل تنفيذ بأدلته داخل ملفه."
+                     % (count, "، ".join("`%s`" % d["id"] for d in done), pron))
         index.append("")
-    index.append("بقية الأوامر في حالة DESIGNED: مكتوبة ولم تُنفَّذ بعد.")
+    if blocked:
+        index.append("ومحجوب %d: %s. الحاجز مسمّى داخل كل ملف."
+                     % (len(blocked), "، ".join("`%s`" % b["id"] for b in blocked)))
+        index.append("")
+    rest = len(PROMPTS) - len(done) - len(blocked)
+    if rest:
+        index.append("وبقية الأوامر (%d) في حالة DESIGNED: مكتوبة ولم تُنفَّذ بعد." % rest)
     index.append("لا تُرقّى حالة أي أمر إلى IMPLEMENTED أو TESTED أو VERIFIED إلا بدليل مُنفَّذ ومرفق،")
     index.append("وفق سلّم الحالات في `SKETCH_DESIGN_PRODUCTION_EXECUTION_MASTER_V2.md`.")
     index.append("")

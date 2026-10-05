@@ -8,7 +8,7 @@ dict(
   executed=dict(
     at="2026-10-05T14:32:24Z",
     outputs=[
-      "`execution/_registry/source-register.tsv` — 9 sources, every AVAILABLE one hashed",
+      "`execution/_registry/source-register.tsv` — 9 sources; every file-based source carries a SHA-256, and the one directory-based source carries none by construction",
       "`execution/_registry/decision-ledger.tsv` — 15 decisions, each carrying the reference's own state word",
       "`execution/_registry/environment-inventory.md` — read-only inventory, each command and timestamp recorded",
       "`execution/_registry/gap-report.md` — 6 gaps and 1 RECONCILIATION_REQUIRED conflict",

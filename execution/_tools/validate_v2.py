@@ -13,6 +13,7 @@ PROMPTS = os.path.join(ROOT, "prompts")
 
 MANDATORY = [
     "SKETCH_DESIGN_PRODUCTION_EXECUTION_MASTER_V2.md",
+    "SKETCH_DESIGN_EXECUTION.md",
     "execution/ARCHITECTURE_DECISIONS.md",
     "execution/SERVICE_CATALOG.md",
     "execution/API_AND_EVENT_CONTRACTS.md",
@@ -245,6 +246,40 @@ def check_traceability_fresh():
         err("coverage marker does not balance: %s != %s + %s" % m.group(1, 2, 3))
 
 
+def check_single_file_fresh():
+    """SKETCH_DESIGN_EXECUTION.md is generated. Regenerate and compare, so it
+    cannot drift from the prompts it claims to contain."""
+    out = os.path.join(REPO, "SKETCH_DESIGN_EXECUTION.md")
+    gen = os.path.join(HERE, "gen_single.py")
+    if not os.path.isfile(gen):
+        return
+    before = open(out, encoding="utf-8").read() if os.path.isfile(out) else None
+    r = subprocess.run([sys.executable, gen], capture_output=True, text=True)
+    if r.returncode != 0:
+        err("gen_single.py failed: %s" % r.stderr.strip())
+        return
+    if before is None:
+        err("SKETCH_DESIGN_EXECUTION.md did not exist; it has now been generated")
+        return
+    if before != open(out, encoding="utf-8").read():
+        err("SKETCH_DESIGN_EXECUTION.md was stale; regenerate before committing")
+
+
+def check_registry_lint():
+    """P00's acceptance rests on this linter, so the audit runs it rather than
+    trusting that someone did."""
+    lint = os.path.join(HERE, "lint_registry.py")
+    if not os.path.isfile(lint):
+        return  # P00 not executed yet; its deliverables are not required.
+    r = subprocess.run([sys.executable, lint], capture_output=True, text=True)
+    if r.returncode != 0:
+        for line in r.stdout.splitlines():
+            if line.startswith("FAIL"):
+                err("registry lint: %s" % line[6:])
+        if not any(l.startswith("FAIL") for l in r.stdout.splitlines()):
+            err("lint_registry.py failed: %s" % (r.stderr.strip() or "no output"))
+
+
 def main():
     check_deliverables()
     metas, order = check_prompts()
@@ -254,6 +289,8 @@ def main():
         check_index(metas)
     n = check_claims()
     check_traceability_fresh()
+    check_registry_lint()
+    check_single_file_fresh()
 
     print("prompts audited : %d" % len(metas))
     print("markdown scanned: %d" % n)
