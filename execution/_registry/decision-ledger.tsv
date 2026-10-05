@@ -1,0 +1,22 @@
+# Sketch Design — Decision Ledger (P00_DISCOVERY deliverable)
+# Transcribed from SRC-01. source_state is the reference's OWN wording and is never
+# normalised: "Approved direction" is not lowered to "approved", and "Unverified" is
+# never promoted. D-01..D-08 come from the section 11 decision log (English states).
+# D-09..D-15 come from the executive brief table القرارات التي تم اعتمادها.
+#
+decision_id	statement	source_state	owner_role	blocks_prompts
+D-01	Official product name Sketch Design; prior retired parent brand excluded	Approved direction	product owner	-
+D-02	Single operator launch, future B2B readiness	Approved direction	product owner	-
+D-03	Mobile web camera + optional native LiDAR companion	Approved direction	product owner	-
+D-04	Independent Admin Control Plane	Approved direction	product owner	-
+D-05	Greenfield AI; old AI Core and VPS model stack not reused	Approved direction	product owner	-
+D-06	Model/provider shortlists, DPA, residency and price	Needs procurement/validation	product owner + security + procurement	P05
+D-07	Saudi code data rights and professional sign-off	Needs legal/engineering review	qualified counsel + licensed engineer	P09,P11,P18
+D-08	Live runtime and production-readiness claims	Unverified	engineering leads	P20
+D-09	الهوية: Sketch Design والشعار المعتمد برمز القلم والمخطط؛ لا تُستخدم العلامة الملغاة	تم اعتماده	product owner	-
+D-10	الإطلاق: تشغيل المنصة أولًا لخدماتنا؛ تأجير الوكلاء والتخصيص التجاري لاحقًا	تم اعتماده	product owner	-
+D-11	الوكلاء: منظومة قابلة للضبط والنسخ والإصدار والتقييم، تتحكم بها منصة التشغيل	تم اعتماده	engineering leads	-
+D-12	النماذج: Model Gateway إنتاجي جديد متعدد المزوّدين، لا يعتمد على AI Core القديم	تم اعتماده	engineering leads	-
+D-13	الإدارة: لوحة مستقلة تتصل بخدمات المنصة عبر APIs وصلاحيات مدققة	تم اعتماده	engineering leads	-
+D-14	المسح: كاميرا ويب للجوال؛ تطبيق مرافق اختياري لماسح LiDAR الاحترافي	تم اعتماده	product owner	-
+D-15	الموثوقية: نتائج موثقة، اختبارات، مراقبة تكلفة وضغط، مراجعة مهندس قبل الاعتماد	تم اعتماده	engineering leads + qualified reviewer	-

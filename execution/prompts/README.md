@@ -7,7 +7,7 @@
 
 | Prompt | Roadmap stage | Prereq | Requirements | Status |
 | --- | --- | --- | --- | --- |
-| [P00_DISCOVERY](P00_DISCOVERY.md) | 0 — Greenfield | - | UR-029,UR-048,UR-050,UR-051,UR-052 | DESIGNED |
+| [P00_DISCOVERY](P00_DISCOVERY.md) | 0 — Greenfield | - | UR-029,UR-048,UR-050,UR-051,UR-052 | TESTED |
 | [P01_FOUNDATION](P01_FOUNDATION.md) | 1 — Foundation | P00 | UR-012,UR-027,UR-048,UR-054 | DESIGNED |
 | [P02_IDENTITY_AND_TENANCY](P02_IDENTITY_AND_TENANCY.md) | 1 — Foundation | P01 | UR-006,UR-008,UR-017,UR-042,UR-045,UR-046,UR-047 | DESIGNED |
 | [P03_PROJECT_AND_EVIDENCE](P03_PROJECT_AND_EVIDENCE.md) | 1 — Foundation | P02 | UR-018,UR-040,UR-011 | DESIGNED |
@@ -29,8 +29,10 @@
 | [P19_EVALUATION_AND_QUALITY_REGRESSION](P19_EVALUATION_AND_QUALITY_REGRESSION.md) | 6 — Launch readiness | P18 | UR-024,UR-031,UR-036 | DESIGNED |
 | [P20_PRODUCTION_READINESS_AUDIT](P20_PRODUCTION_READINESS_AUDIT.md) | 6 — Launch readiness | P19 | UR-049,UR-048,UR-051,UR-053,UR-054,UR-055 | DESIGNED |
 
-## ما معنى DESIGNED هنا
+## الحالات
 
-جميع الأوامر في حالة DESIGNED لأن هذه الحزمة مرجع تنفيذ، ولم يُنفَّذ منها شيء بعد.
+نُفِّذ من هذه الحزمة أمر واحد: `P00`، وله سجل تنفيذ بأدلته داخل ملفه.
+
+بقية الأوامر في حالة DESIGNED: مكتوبة ولم تُنفَّذ بعد.
 لا تُرقّى حالة أي أمر إلى IMPLEMENTED أو TESTED أو VERIFIED إلا بدليل مُنفَّذ ومرفق،
 وفق سلّم الحالات في `SKETCH_DESIGN_PRODUCTION_EXECUTION_MASTER_V2.md`.

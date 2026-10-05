@@ -5,7 +5,7 @@ stage: 0 — Greenfield
 title_en: Source reconciliation and greenfield baseline
 prereq: -
 requirements: UR-029,UR-048,UR-050,UR-051,UR-052
-status: DESIGNED
+status: TESTED
 -->
 
 # P00_DISCOVERY — Source reconciliation and greenfield baseline
@@ -17,7 +17,33 @@ status: DESIGNED
 | مرحلة خارطة الطريق | 0 — Greenfield |
 | المتطلب السابق | لا يوجد |
 | المتطلبات المغطّاة | UR-029، UR-048، UR-050، UR-051، UR-052 |
-| الحالة | DESIGNED |
+| الحالة | TESTED |
+
+## سجل التنفيذ | Execution record
+
+نُفِّذ هذا الأمر في `2026-10-05T14:32:24Z`.
+
+**المخرجات:**
+
+- `execution/_registry/source-register.tsv` — 9 sources, every AVAILABLE one hashed
+- `execution/_registry/decision-ledger.tsv` — 15 decisions, each carrying the reference's own state word
+- `execution/_registry/environment-inventory.md` — read-only inventory, each command and timestamp recorded
+- `execution/_registry/gap-report.md` — 6 gaps and 1 RECONCILIATION_REQUIRED conflict
+- `execution/_tools/lint_registry.py` — the three tests this prompt names
+
+**الأدلة المرفقة:**
+
+- Registry lint: 9 sources, 15 decisions, 3 not supplied — REGISTRY LINT: PASS.
+- Linter proven able to fail on four injected defects: a paraphrased decision state, an AVAILABLE source with its digest removed, a NOT_SUPPLIED source with no gap entry, and a short row.
+- sha256sum transcript covering every supplied file, run at 2026-10-05T14:32:24Z.
+- The two v11 uploads share one digest (31cc4aa3...), so the re-upload is the same file and not a revision.
+
+**ما اكتُشف:**
+
+- RC-01: v11 names AI Core seven times across four sheets as a live component — including as the producer and aggregate of usage.recorded.v1, and as the owner of a release gate — while the 2026 reference retires it. Recorded as RECONCILIATION_REQUIRED with a proposed resolution; not applied.
+- GAP-05: Hermes appears in the retirement instruction but in no supplied source, so this session cannot confirm it exists. Recorded UNKNOWN_NOT_INSPECTABLE rather than assumed.
+- GAP-04: no Sketch Design infrastructure is reachable from this session, so P01 cannot start. The session's own AWS and GitHub credentials are harness credentials and must not be mistaken for platform ones.
+- No system was stopped, deleted or reconfigured. P00 records dispositions; it does not execute them.
 
 ## الشرح بالعربية
 
@@ -109,7 +135,7 @@ This prompt creates documentation only and mutates no system. To roll back, reve
 - All four registry files exist, pass the linter and are committed.
 - The gap report is non-empty where sources are missing, and explicitly states 'no gaps' only if every source is AVAILABLE.
 - No credential appears in any committed file.
-- Status recorded as DESIGNED. This prompt produces no implemented runtime, so IMPLEMENTED is not available to it.
+- Status follows the ladder on evidence: TESTED once the registry linter has run and passed with its output attached. IMPLEMENTED is not available to this prompt, which produces documentation rather than runtime, so the ladder skips it. VERIFIED requires an independent party to reproduce the hashes and the inventory.
 
 STOP CONDITION
 Stop and report rather than proceeding if: a dependency's exit gate is not met; a required
