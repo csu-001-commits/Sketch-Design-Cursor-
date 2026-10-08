@@ -1,0 +1,22 @@
+# Sketch Design — Operational Governance Additions (machine-readable provenance registry)
+#
+# PROVENANCE WARNING. Every row here is a NEW USER DIRECTIVE / GOVERNANCE ADDITION.
+# NONE of these is a requirement extracted from Sketch_Design_Ultimate_Master_Reference_2026.docx
+# or from Sketch_Design_Model_Gateway_Observability_v11.md. They originate from the user's
+# governance directive and from the gap analysis document Auditing.md, which is itself NOT a
+# supplied source. Do not cite SRC-01 or SRC-02 as their origin, and do not merge them into
+# execution/_registry/v2-requirements.tsv, whose rows carry source-derived provenance only.
+#
+# origin values: USER_DIRECTIVE = stated by the repository owner in this engagement.
+# status values: ADOPTED = contract written here · RECONCILIATION_REQUIRED = conflicts with an
+# approved source and awaits the Product Owner · PROPOSED = recorded, not adopted.
+#
+gov_id	statement_en	origin	status	contract_ref	prompt_ref	linked
+GOV-01	Entity contracts are specified at field, relation and constraint level for the ten operational governance entities, not merely named in an entity list.	USER_DIRECTIVE	ADOPTED	API_AND_EVENT_CONTRACTS.md#7	P-GOV	-
+GOV-02	Every Project carries a public_code: a public identifier that does not reveal the internal UUID, is unique per tenant, and is never used as an internal foreign key.	USER_DIRECTIVE	ADOPTED	API_AND_EVENT_CONTRACTS.md#7.2	P-GOV	-
+GOV-03	A transactional outbox is a first-class contract: the domain change and its OutboxEvent are written in one transaction, and publication is retryable and de-duplicated.	USER_DIRECTIVE	ADOPTED	API_AND_EVENT_CONTRACTS.md#7.10	P-GOV	-
+GOV-04	Request is a standalone intake entity, and one Request converts to zero or exactly one Project.	USER_DIRECTIVE	ADOPTED	API_AND_EVENT_CONTRACTS.md#7.1	P-GOV	-
+GOV-05	Project lifecycle is a separate state machine from Task status; the two never share a vocabulary.	USER_DIRECTIVE	ADOPTED	API_AND_EVENT_CONTRACTS.md#7.2	P-GOV	RC-02
+GOV-06	DeliveryManifest binds project, recipient, tasks, evidence, review decisions, files, version and delivery timestamps into one immutable record.	USER_DIRECTIVE	ADOPTED	API_AND_EVENT_CONTRACTS.md#7.6	P-GOV	-
+GOV-07	Accreditation carries a type of INTERIM or OFFICIAL, and an INTERIM accreditation can never be displayed or exported as OFFICIAL. Describing a login page, a CAPTCHA or a public search as government verification or official accreditation is prohibited.	USER_DIRECTIVE	ADOPTED	API_AND_EVENT_CONTRACTS.md#7.7	P-GOV	-
+GOV-08	Task blocking is modelled as an orthogonal attribute set on the Task, not as an eighth status value.	USER_DIRECTIVE	ADOPTED	API_AND_EVENT_CONTRACTS.md#7.3	P-GOV	RC-02

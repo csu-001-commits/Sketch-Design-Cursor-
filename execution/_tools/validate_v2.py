@@ -138,20 +138,55 @@ def check_prompts():
     return metas, order
 
 
+NUMERIC_ID = re.compile(r"^P\d\d$")
+
+# A prompt id outside the P%02d sequence is an insertion into the chain, not a
+# gap in it. It has to be listed here deliberately, so a typo in a filename
+# cannot quietly become a new prompt.
+REGISTERED_NON_NUMERIC = {"P-GOV"}
+
+
+def generated_order():
+    """The execution order as the generator defines it. File order cannot serve:
+    the directory sorts alphabetically, which is not the order prompts run in."""
+    sys.path.insert(0, HERE)
+    from prompts_a import PROMPTS_A
+    from prompts_b import PROMPTS_B
+    from prompts_c import PROMPTS_C
+    return [p["id"] for p in PROMPTS_A + PROMPTS_B + PROMPTS_C]
+
+
 def check_chain(metas, order):
-    expected = ["P%02d" % i for i in range(len(order))]
-    if order != expected:
-        err("prompt ids are not a complete sequence: %s" % order)
+    gen = generated_order()
+    if len(gen) != len(set(gen)):
+        err("the generator defines a duplicate prompt id")
+    if set(gen) != set(order):
+        err("execution/prompts/ and the generator disagree: only in prompts/ %s; "
+            "only in generator %s" % (sorted(set(order) - set(gen)), sorted(set(gen) - set(order))))
+
+    # The numeric prompts must still be a complete, unbroken P00..Pnn sequence.
+    numeric = sorted(p for p in order if p and NUMERIC_ID.match(p))
+    expected = ["P%02d" % i for i in range(len(numeric))]
+    if numeric != expected:
+        err("numeric prompt ids are not a complete sequence: %s" % numeric)
+    for pid in order:
+        if pid and not NUMERIC_ID.match(pid) and pid not in REGISTERED_NON_NUMERIC:
+            err("%s: non-numeric prompt id is not registered in REGISTERED_NON_NUMERIC" % pid)
+
+    pos = {pid: i for i, pid in enumerate(gen)}
     for pid, meta in metas.items():
         pre = meta.get("prereq", "")
         if pre == "-":
-            if pid != "P00":
-                err("%s: only P00 may have no prereq" % pid)
+            if not gen or pid != gen[0]:
+                err("%s: only the first prompt in the chain may have no prereq" % pid)
             continue
         if pre not in metas:
             err("%s: prereq %r does not exist" % (pid, pre))
-        elif int(pre[1:]) >= int(pid[1:]):
-            err("%s: prereq %r is not earlier" % (pid, pre))
+            continue
+        if pid not in pos or pre not in pos:
+            continue
+        if pos[pre] >= pos[pid]:
+            err("%s: prereq %r is not earlier in the execution order" % (pid, pre))
 
 
 def check_requirements(metas):
@@ -280,6 +315,25 @@ def check_registry_lint():
             err("lint_registry.py failed: %s" % (r.stderr.strip() or "no output"))
 
 
+def check_governance_contracts():
+    """Section 7 of API_AND_EVENT_CONTRACTS.md is a contract, so the audit
+    verifies its completeness rather than trusting that it is complete."""
+    chk = os.path.join(HERE, "check_governance_contracts.py")
+    if not os.path.isfile(chk):
+        err("missing execution/_tools/check_governance_contracts.py")
+        return
+    r = subprocess.run([sys.executable, chk], capture_output=True, text=True)
+    if r.returncode != 0:
+        reported = False
+        for line in r.stdout.splitlines():
+            if line.startswith("FAIL"):
+                err("governance contracts: %s" % line[6:])
+                reported = True
+        if not reported:
+            err("check_governance_contracts.py failed: %s"
+                % (r.stderr.strip() or "no output"))
+
+
 def main():
     check_deliverables()
     metas, order = check_prompts()
@@ -290,6 +344,7 @@ def main():
     n = check_claims()
     check_traceability_fresh()
     check_registry_lint()
+    check_governance_contracts()
     check_single_file_fresh()
 
     print("prompts audited : %d" % len(metas))

@@ -3,12 +3,12 @@
 
 # SKETCH DESIGN — EXECUTION
 
-**حزمة التنفيذ كاملة في ملف واحد.** القواعد، ثم ما يحجب البدء، ثم الأوامر الواحد والعشرون بالترتيب، ثم السجلات.
+**حزمة التنفيذ كاملة في ملف واحد.** القواعد، ثم ما يحجب البدء، ثم الأوامر بالترتيب، ثم السجلات.
 
 | | |
 | --- | --- |
 | المنتج | Sketch Design — منصة الذكاء الهندسي |
-| عدد الأوامر | 21 على 7 مراحل |
+| عدد الأوامر | 22 على 7 مراحل |
 | نُفِّذ منها | 1 (`P00`) |
 | بوابات الإصدار | 0 من 7 مُقيَّمة |
 | حكم الجاهزية | **`BLOCKED`** |
@@ -26,7 +26,7 @@
 | --- | --- |
 | [الجزء 1 — قواعد التشغيل](#part-1) | تُقيّد كل أمر. اقرأها قبل أي تنفيذ |
 | [الجزء 2 — ما يحجب البدء](#part-2) | القرارات المفتوحة، وأيها يوقف أي أمر |
-| [الجزء 3 — الأوامر بالترتيب](#part-3) | الواحد والعشرون أمرًا، كل منها باثني عشر عنصرًا |
+| [الجزء 3 — الأوامر بالترتيب](#part-3) | 22 أمرًا، كل منها باثني عشر عنصرًا |
 | [الملحق أ — سجل المصادر](#appendix-a) | ما وصل، وما لم يصل |
 | [الملحق ب — سجل القرارات](#appendix-b) | بحالاته الأصلية حرفيًا |
 | [الملحق ج — أين التفصيل](#appendix-c) | المواصفات الاثنتا عشرة |
@@ -39,23 +39,24 @@
 | 2 | [`P01_FOUNDATION`](#p01) — المستودع والبيئات والتكامل المستمر وضبط التغيير المدقق | 1 | `P00` | DESIGNED |
 | 3 | [`P02_IDENTITY_AND_TENANCY`](#p02) — الهوية والمنظمات وحدود العزل وصلاحيات الأدوار | 1 | `P01` | DESIGNED |
 | 4 | [`P03_PROJECT_AND_EVIDENCE`](#p03) — المشروع والموقع والطلب وعقد حزمة الأدلة | 1 | `P02` | DESIGNED |
-| 5 | [`P04_WORKFLOW_ORCHESTRATOR`](#p04) — محرك مسارات العمل الدائم وعدم التكرار وبث الأحداث | 1 | `P03` | DESIGNED |
-| 6 | [`P05_MODEL_GATEWAY_CORE`](#p05) — بوابة النماذج: سجل القدرات وتسلسل التوجيه ومحوّلات المزوّدين | 2 | `P04` | DESIGNED |
-| 7 | [`P06_MODEL_GATEWAY_CONTROLS`](#p06) — الميزانيات والبدائل وذاكرة التلقين والتحقق من المخرجات وسجل الاستهلاك | 2 | `P05` | DESIGNED |
-| 8 | [`P07_AGENT_RUNTIME`](#p07) — تشغيل الوكلاء: التعريفات والإصدارات وقائمة الأدوات المسموحة وهوية المهمة المحصورة | 2 | `P06` | DESIGNED |
-| 9 | [`P08_DETERMINISTIC_ENGINEERING_TOOLS`](#p08) — المحركات الهندسية الحتمية وحدود الحساب | 2 | `P07` | DESIGNED |
-| 10 | [`P09_KNOWLEDGE_AND_RETRIEVAL`](#p09) — المعرفة المحكومة بالمصدر وحقوق الاسترجاع والدفاع ضد حقن التعليمات | 2 | `P08` | DESIGNED |
-| 11 | [`P10_GOLDEN_WORKFLOW_VILLA`](#p10) — المسار الذهبي لمراجعة الفيلا من الطلب إلى التسليم | 3 | `P09` | DESIGNED |
-| 12 | [`P11_HUMAN_REVIEW_AND_SIGNOFF`](#p11) — المراجعة البشرية المؤهلة وحدود المراجعة والتوقيع المرتبط بالبصمة | 3 | `P10` | DESIGNED |
-| 13 | [`P12_FRONTEND_FOUNDATION_RTL`](#p12) — نظام التصميم وأساس RTL العربي أولًا والالتزام بالهوية | 4 | `P11` | DESIGNED |
-| 14 | [`P13_FRONTEND_CUSTOMER_WORKSPACE`](#p13) — الصفحة الرئيسية والدخول ومساحة عمل العميل بالدقة المعتمدة | 4 | `P12` | DESIGNED |
-| 15 | [`P14_SKETCH_SCAN_WEB`](#p14) — سكيتش سكان على الويب المحمول: الالتقاط والموافقة والجودة وصدق القياس | 5 | `P13` | DESIGNED |
-| 16 | [`P15_SKETCH_SCAN_LIDAR_COMPANION`](#p15) — التطبيق المرافق الاختياري لماسح LiDAR والتسليم المصادق عليه للمشروع | 5 | `P14` | DESIGNED |
-| 17 | [`P16_ADMIN_CONTROL_PLANE`](#p16) — لوحة التحكم الإدارية: الأدوار ومصفوفة الصلاحيات والإجراءات الحساسة المصرّح بها | 6 | `P15` | DESIGNED |
-| 18 | [`P17_OBSERVABILITY_AND_SRE`](#p17) — الرصد وإدارة التكلفة والاستجابة للحوادث والاسترجاع المُتحقَّق منه | 6 | `P16` | DESIGNED |
-| 19 | [`P18_SECURITY_AND_COMPLIANCE`](#p18) — التحقق الأمني والتزامات الخصوصية وبوابة المراجعة القانونية | 6 | `P17` | DESIGNED |
-| 20 | [`P19_EVALUATION_AND_QUALITY_REGRESSION`](#p19) — مجموعات التقييم وكشف تراجع الجودة وبوابة الترقية | 6 | `P18` | DESIGNED |
-| 21 | [`P20_PRODUCTION_READINESS_AUDIT`](#p20) — التدقيق المستقل لجاهزية الإنتاج مقابل بوابات الإصدار | 6 | `P19` | DESIGNED |
+| 5 | [`P-GOV_GOVERNANCE_ENTITIES`](#p-gov) — كيانات الحوكمة التشغيلية — عقود الحقول والعلاقات والقيود | 1 | `P03` | DESIGNED |
+| 6 | [`P04_WORKFLOW_ORCHESTRATOR`](#p04) — محرك مسارات العمل الدائم وعدم التكرار وبث الأحداث | 1 | `P03` | DESIGNED |
+| 7 | [`P05_MODEL_GATEWAY_CORE`](#p05) — بوابة النماذج: سجل القدرات وتسلسل التوجيه ومحوّلات المزوّدين | 2 | `P04` | DESIGNED |
+| 8 | [`P06_MODEL_GATEWAY_CONTROLS`](#p06) — الميزانيات والبدائل وذاكرة التلقين والتحقق من المخرجات وسجل الاستهلاك | 2 | `P05` | DESIGNED |
+| 9 | [`P07_AGENT_RUNTIME`](#p07) — تشغيل الوكلاء: التعريفات والإصدارات وقائمة الأدوات المسموحة وهوية المهمة المحصورة | 2 | `P06` | DESIGNED |
+| 10 | [`P08_DETERMINISTIC_ENGINEERING_TOOLS`](#p08) — المحركات الهندسية الحتمية وحدود الحساب | 2 | `P07` | DESIGNED |
+| 11 | [`P09_KNOWLEDGE_AND_RETRIEVAL`](#p09) — المعرفة المحكومة بالمصدر وحقوق الاسترجاع والدفاع ضد حقن التعليمات | 2 | `P08` | DESIGNED |
+| 12 | [`P10_GOLDEN_WORKFLOW_VILLA`](#p10) — المسار الذهبي لمراجعة الفيلا من الطلب إلى التسليم | 3 | `P09` | DESIGNED |
+| 13 | [`P11_HUMAN_REVIEW_AND_SIGNOFF`](#p11) — المراجعة البشرية المؤهلة وحدود المراجعة والتوقيع المرتبط بالبصمة | 3 | `P10` | DESIGNED |
+| 14 | [`P12_FRONTEND_FOUNDATION_RTL`](#p12) — نظام التصميم وأساس RTL العربي أولًا والالتزام بالهوية | 4 | `P11` | DESIGNED |
+| 15 | [`P13_FRONTEND_CUSTOMER_WORKSPACE`](#p13) — الصفحة الرئيسية والدخول ومساحة عمل العميل بالدقة المعتمدة | 4 | `P12` | DESIGNED |
+| 16 | [`P14_SKETCH_SCAN_WEB`](#p14) — سكيتش سكان على الويب المحمول: الالتقاط والموافقة والجودة وصدق القياس | 5 | `P13` | DESIGNED |
+| 17 | [`P15_SKETCH_SCAN_LIDAR_COMPANION`](#p15) — التطبيق المرافق الاختياري لماسح LiDAR والتسليم المصادق عليه للمشروع | 5 | `P14` | DESIGNED |
+| 18 | [`P16_ADMIN_CONTROL_PLANE`](#p16) — لوحة التحكم الإدارية: الأدوار ومصفوفة الصلاحيات والإجراءات الحساسة المصرّح بها | 6 | `P15` | DESIGNED |
+| 19 | [`P17_OBSERVABILITY_AND_SRE`](#p17) — الرصد وإدارة التكلفة والاستجابة للحوادث والاسترجاع المُتحقَّق منه | 6 | `P16` | DESIGNED |
+| 20 | [`P18_SECURITY_AND_COMPLIANCE`](#p18) — التحقق الأمني والتزامات الخصوصية وبوابة المراجعة القانونية | 6 | `P17` | DESIGNED |
+| 21 | [`P19_EVALUATION_AND_QUALITY_REGRESSION`](#p19) — مجموعات التقييم وكشف تراجع الجودة وبوابة الترقية | 6 | `P18` | DESIGNED |
+| 22 | [`P20_PRODUCTION_READINESS_AUDIT`](#p20) — التدقيق المستقل لجاهزية الإنتاج مقابل بوابات الإصدار | 6 | `P19` | DESIGNED |
 
 ---
 
@@ -163,6 +164,34 @@
 | `OD-V2-09` | الحصول على الرسم المتجه الأصلي للشعار                 | إنتاج أصول العلامة في `P12`                | مالك المنتج              | المصدر يشترطه ولم يُرفَق         |
 | `OD-V2-10` | هوية المدقّق المستقل لـ `P20`                         | إصدار حكم الجاهزية                         | مالك المنتج              | المصدر يشترط الاستقلال           |
 | `OD-V2-11` | حسم `RC-01`: إعادة توجيه كل عقد في v11 يسمّي `AI Core` بعد تقاعده | `P04` `P06` `P17` | قائد الهندسة | اكتشاف `P00`؛ حسم مقترح وغير مُطبَّق |
+| `OD-V2-12` | تبنّي **Manus API** مُدخَلًا خارجيًا للتنفيذ | تكامل خارجي في `P04` `P05` | مالك المنتج + أمن + قائد الهندسة | **مُدخَل جديد غير موجود في أي مصدر مُرفَق** |
+
+---
+
+### OD-V2-12 — Manus API: مُسجَّل ولم يُتبنَّ | recorded, not adopted
+
+**أُضيف بتوجيه مالك المستودع (`NEW USER DIRECTIVE / GOVERNANCE ADDITION`)، لا استخراجًا من `SRC-01` أو `SRC-02`.**
+
+**ما هو:** واجهة تنفيذ خارجية طُرحت في توجيه الحوكمة. **لا ذكر لها في أي مصدر مُرفَق**:
+لا في المرجع الشامل 2026، ولا في مصنف v11، ولا في سجل القرارات المعتمد.
+
+**حالته:** `PROPOSED`. المقترح الهندسي المعروف بـ`G10` **اقتراح جيد وليس متطلبًا معتمدًا**،
+ولا يُعامل معاملة المتطلب قبل القرار.
+
+**الحدود المُلزَمة، وتسري حتى لو تبنّي القرار لاحقًا:**
+
+1. **معرّف مهمة خارجي ليس دليل إنجاز.** ولا webhook، ولا حالة يبلّغها نظام خارجي.
+   «المهمة انتهت عند المزوّد» ليست «المخرج صحيح ومُراجَع».
+2. أي تبنٍّ لاحق يُلزِم ربط الناتج بـ**`Evidence`** (ببايتاته وتجزئتها)، وبـ**`ReviewDecision`**
+   من مراجع بشري مؤهل، وبـ**`AuditEvent`**. ناتج لا يُربَط بالثلاثة لا يدخل مخرجًا.
+3. لا يُستبدل حكم المراجعة البشرية بحالة خارجية، ولا يُشتق `Task.status` منها.
+4. البيانات المرسَلة إلى أي مزوّد خارجي تمر ببوابة الحساسية والإقامة نفسها (`P05`).
+
+**ما لم يُنفَّذ:** **لا تكامل Manus API في هذا العمل.** لا عميل، ولا عقد، ولا مفتاح، ولا
+نقطة نهاية. هذا البند **يسجّل القرار وحدوده فقط**.
+
+**الأثر إن بقي مفتوحًا:** لا شيء يُحجَب — لا يعتمد أي أمر في الحزمة عليه. ويبقى مفتوحًا
+حتى يصدر قرار صريح من المالك والأمن والهندسة.
 
 ---
 
@@ -648,6 +677,133 @@ Revert the service deployment and apply the down migration. Evidence objects alr
 - Hash verification is server-side and proven.
 - No evidence is deleted by any path in this prompt.
 - Status recorded as TESTED.
+
+STOP CONDITION
+Stop and report rather than proceeding if: a dependency's exit gate is not met; a required
+decision in PART 2 of this file is unresolved and blocks this prompt; an action would delete
+production data, deploy publicly, modify DNS, incur paid API usage, or make an irreversible
+infrastructure change without explicit authorization.
+Report the blocker, record the status as BLOCKED, and do not substitute an approximation.
+```
+
+[↑ المحتويات](#المحتويات)
+
+<a id="p-gov"></a>
+
+### P-GOV_GOVERNANCE_ENTITIES — كيانات الحوكمة التشغيلية — عقود الحقول والعلاقات والقيود
+
+| | |
+| --- | --- |
+| بالإنجليزية | Operational governance entities — field, relation and constraint contracts |
+| المرحلة | 1 — Foundation |
+| المتطلب السابق | `P03` |
+| المتطلبات المغطّاة | UR-009، UR-011، UR-018، UR-040، UR-047 |
+| الحالة | **DESIGNED** |
+
+**ماذا ينفذ هذا الأمر؟** يثبّت عقدًا كاملًا على مستوى الحقل والعلاقة والقيد لعشرة كيانات حوكمة تشغيلية، ويضيف صندوق الصادر المعامِلي عقدًا حقيقيًا لا ملاحظة معمارية.
+
+**لماذا نحتاجه؟** قائمة أسماء كيانات لا تمنع عيبًا. الطلب الذي يُنتج مشروعين، والمعرّف العام الذي يكشف الـUUID، والاعتماد المؤقت الذي يُطبَع رسميًا، والحدث الذي يُنشَر دون تثبيت تغييره — كلها تمر من ثغرة «الكيان مذكور والعقد غائب».
+
+**ما النتيجة المتوقعة؟** عقود الحقول والقيود في `execution/API_AND_EVENT_CONTRACTS.md` القسم 7، وسجل مصدرية `governance-additions.tsv`، ومدقّق نصي يفشل عند نقص أي بند من العقد.
+
+**كيف نتحقق من نجاحه؟** يفشل الأمر إذا قُبل طلب مرتبط بأكثر من مشروع، أو إذا دخلت `BLOCKED` قائمة حالات المهمة، أو إذا عُرض `INTERIM` بوصفه `OFFICIAL`، أو إذا كُتب حدث الصادر في معاملة غير معاملة تغيير النطاق.
+
+```text
+You are executing P-GOV_GOVERNANCE_ENTITIES of the Sketch Design production implementation.
+You are bound by PART 1 (OPERATING RULES) of this file. Read it before you begin.
+
+1. OBJECTIVE
+Fix the field-, relation- and constraint-level contracts for the ten operational governance entities — Request, Project, Task, Evidence, ReviewDecision, DeliveryManifest, Accreditation, AuditEvent, UsageRecord, OutboxEvent — and make the transactional outbox a first-class contract rather than an architectural note.
+
+2. DEPENDENCIES
+P03 — the project and evidence domain and the Evidence Package contract exist and are tenant-scoped. This prompt specifies contracts; it does not re-implement P03's entities.
+
+3. EXACT SCOPE
+IN SCOPE:
+- Field tables for the ten entities named above, each field carrying a type and its binding constraint.
+- Request as a standalone intake entity: one Request converts to zero or exactly one Project, enforced by a unique partial index rather than by application convention.
+- Project.public_code as a public identifier that does not reveal the internal UUID, is unique per tenant, and is never used as an internal or foreign key.
+- Project.lifecycle as a state machine with a vocabulary wholly separate from Task.status.
+- Task blocking as an orthogonal attribute set — blocked, block_code, block_reason, blocked_owner, blocked_at, expected_resolution_at, next_action — alongside, not inside, the seven task statuses.
+- DeliveryManifest referential completeness: project, recipient, tasks, evidence, review decisions, files, version and delivery timestamps.
+- Accreditation type restricted to INTERIM or OFFICIAL, with the display and export rules that keep the two apart.
+- OutboxEvent with id, aggregate_type, aggregate_id, event_type, payload, idempotency_key, occurred_at, published_at, publish_attempts, last_error and status, plus the atomic-write, retry and de-duplication rules.
+- A text-level conformance checker that fails when any of these contract elements is missing from the specification.
+- Provenance: every item recorded in execution/_registry/governance-additions.tsv as a USER_DIRECTIVE governance addition.
+
+OUT OF SCOPE — do not do these, and do not quietly widen into them:
+- Do not add BLOCKED as an eighth value of Task.status. UR-009 fixes seven, and amending it is an open decision — see RC-02.
+- Do not edit execution/_registry/v2-requirements.tsv. Its rows carry source-derived provenance; these items are a user directive and belong in governance-additions.tsv.
+- Do not attribute any item here to SRC-01 or SRC-02, and do not cite the unsupplied engineering-project-governance document — see GAP-07.
+- Do not implement the Manus API integration. OD-V2-12 records the decision and its limits; adoption is not granted.
+- Do not write migrations, services or database code. This prompt fixes contracts; P03 and P04 implement them.
+
+4. FILES AND MODULES AFFECTED
+- execution/API_AND_EVENT_CONTRACTS.md — section 7, the ten entity contracts
+- execution/_registry/governance-additions.tsv — the provenance registry for these items
+- execution/_registry/gap-report.md — GAP-07 and RC-02
+- execution/OPEN_DECISIONS.md — OD-V2-12
+- execution/_tools/check_governance_contracts.py — the conformance checker
+
+5. REQUIRED CONTRACTS
+- Request: UNIQUE (converted_project_id) WHERE converted_project_id IS NOT NULL, and status='converted' if and only if converted_project_id IS NOT NULL.
+- Project: UNIQUE (tenant_id, public_code); public_code is not a reversible encoding of id, is never a key, and carries no ordinal meaning.
+- Project.lifecycle and Task.status share no value and are never derived from one another.
+- Task.status is exactly queued, validating, running, waiting-for-input, human-review, completed, failed. BLOCKED is not a member.
+- Task: blocked=true implies block_code, block_reason, blocked_owner, blocked_at and next_action are all non-empty.
+- DeliveryManifest: state READY requires every reference — project, recipient, tasks, evidence, review decisions, files, version — to resolve to an existing record; a SENT manifest is immutable and a correction is a new version.
+- Accreditation: type is INTERIM or OFFICIAL; OFFICIAL requires a non-empty provider_ref and a recorded provider accreditation decision; INTERIM is never displayed, exported or printed as OFFICIAL.
+- OutboxEvent: the domain change and its OutboxEvent are written in one transaction; idempotency_key is UNIQUE; status=PUBLISHED if and only if published_at is non-null.
+
+6. IMPLEMENTATION INSTRUCTIONS
+- Enforce the Request-to-Project cardinality in the schema. A unique partial index holds under concurrency; an application check does not.
+- Generate public_code from a source independent of the UUID. Any encoding of the id bytes — hex, base32, base58, base64 — is a reveal, not an identifier.
+- Keep the two vocabularies physically separate: separate enum types, separate columns, no shared constant.
+- Model blocking as attributes and leave the seven statuses untouched. A blocked task may sit in any of the seven; blocking describes an obstacle, not a position.
+- Write the domain change and the outbox row in the same transaction, and publish from a separate reader of PENDING rows. Publishing before commit is the defect this contract exists to prevent.
+- On publish failure, increment publish_attempts, record last_error, and leave the row claimable. Past the limit, move it to DEAD_LETTER where an operator can see it.
+- Record every item's provenance as NEW USER DIRECTIVE / GOVERNANCE ADDITION. Do not back-date it onto a supplied source.
+
+7. SECURITY REQUIREMENTS
+- tenant_id is non-nullable on all ten entities and its scope is enforced in the data layer, not in application code alone.
+- public_code must not leak tenant size, creation order or internal identifiers; it is a public surface and is treated as one.
+- AuditEvent and UsageRecord are append-only, with UPDATE and DELETE withdrawn from the application role by database privilege.
+- An INTERIM accreditation shown or exported as OFFICIAL is a misrepresentation of professional standing, not a display bug. Describing a login page, a CAPTCHA or a public search as government verification or official accreditation is prohibited.
+- The outbox payload carries references, not secrets, and never a credential or a full evidence body.
+
+8. AUTOMATED TESTS
+- A Request cannot be linked to more than one Project: inserting a second Request pointing at the same project is rejected.
+- public_code is unique per tenant and is not a reversible encoding of the project UUID.
+- Task.status accepts exactly the seven values and rejects BLOCKED.
+- blocked=true without block_code, block_reason, blocked_owner, blocked_at or next_action is rejected, one test per field.
+- An INTERIM accreditation cannot be displayed or exported with the word OFFICIAL on any surface.
+- A DeliveryManifest reaching READY with any dangling reference is rejected.
+- The domain change and its OutboxEvent are written atomically: a failure after the domain write leaves no outbox row, and a failure after the outbox write leaves no domain change.
+- Outbox publication is idempotent: re-publishing the same idempotency_key produces no second effect.
+- Tenant isolation holds for all ten new entities: a principal outside the tenant reads zero rows.
+
+9. ACCEPTANCE CRITERIA
+- Every field, relation and constraint named in section 7 is present in the specification, proven by a checker that fails when one is removed.
+- The seven task statuses are unchanged and BLOCKED is absent from them.
+- Every item carries USER_DIRECTIVE provenance and none is attributed to a supplied source.
+- RC-02, GAP-07 and OD-V2-12 are registered and linked to this prompt.
+
+10. REQUIRED EVIDENCE
+Attach each item. An item you cannot attach is reported as not produced, never described as if it were.
+- check_governance_contracts.py output listing each entity and each required element with its result.
+- A transcript showing the checker failing on an injected defect for each of its checks, so a PASS means something.
+- The governance-additions.tsv rows, with their contract references resolving to section 7.
+- The RC-02, GAP-07 and OD-V2-12 entries, each naming its owner and what it blocks.
+
+11. ROLLBACK INSTRUCTIONS
+Revert the specification commit. No database object, service or migration is created by this prompt, so there is nothing to un-apply. Do not remove the RC-02, GAP-07 or OD-V2-12 entries on a rollback: a recorded conflict survives the revert of the change that found it.
+
+12. DEFINITION OF DONE
+- The ten entity contracts are complete at field, relation and constraint level.
+- The transactional outbox is a contract with all eleven fields and its atomicity, retry and de-duplication rules.
+- BLOCKED is an attribute and not a status, and UR-009 is unchanged.
+- The checker is wired into execution/_tools/validate_v2.py and proven able to fail.
+- Status recorded as DESIGNED. No implementation is claimed.
 
 STOP CONDITION
 Stop and report rather than proceeding if: a dependency's exit gate is not met; a required
@@ -2625,6 +2781,7 @@ Report the blocker, record the status as BLOCKED, and do not substitute an appro
 | SRC-07 | Sketch Scan Reference v1 | NOT_SUPPLIED | - |
 | SRC-08 | Original logo vector artwork | NOT_SUPPLIED | - |
 | SRC-09 | Execution Blueprint GREENFIELD | AVAILABLE_AS_REPOSITORY | - |
+| SRC-10 | engineering-project-governance | NOT_SUPPLIED | - |
 
 البصمات مقطوعة للعرض. الكاملة في `execution/_registry/source-register.tsv`،
 ومعها الدور وملاحظات التغطية لكل مصدر.

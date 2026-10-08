@@ -11,6 +11,7 @@
 | [P01_FOUNDATION](P01_FOUNDATION.md) | 1 — Foundation | P00 | UR-012,UR-027,UR-048,UR-054 | DESIGNED |
 | [P02_IDENTITY_AND_TENANCY](P02_IDENTITY_AND_TENANCY.md) | 1 — Foundation | P01 | UR-006,UR-008,UR-017,UR-042,UR-045,UR-046,UR-047 | DESIGNED |
 | [P03_PROJECT_AND_EVIDENCE](P03_PROJECT_AND_EVIDENCE.md) | 1 — Foundation | P02 | UR-018,UR-040,UR-011 | DESIGNED |
+| [P-GOV_GOVERNANCE_ENTITIES](P-GOV_GOVERNANCE_ENTITIES.md) | 1 — Foundation | P03 | UR-009,UR-011,UR-018,UR-040,UR-047 | DESIGNED |
 | [P04_WORKFLOW_ORCHESTRATOR](P04_WORKFLOW_ORCHESTRATOR.md) | 1 — Foundation | P03 | UR-009,UR-010,UR-019,UR-023,UR-027 | DESIGNED |
 | [P05_MODEL_GATEWAY_CORE](P05_MODEL_GATEWAY_CORE.md) | 2 — Model Gateway | P04 | UR-015,UR-029,UR-031,UR-032,UR-033,UR-034 | DESIGNED |
 | [P06_MODEL_GATEWAY_CONTROLS](P06_MODEL_GATEWAY_CONTROLS.md) | 2 — Model Gateway | P05 | UR-030,UR-034,UR-035,UR-036 | DESIGNED |
@@ -33,6 +34,6 @@
 
 نُفِّذ من هذه الحزمة أمر واحد: `P00`، وله سجل تنفيذ بأدلته داخل ملفه.
 
-وبقية الأوامر (20) في حالة DESIGNED: مكتوبة ولم تُنفَّذ بعد.
+وبقية الأوامر (21) في حالة DESIGNED: مكتوبة ولم تُنفَّذ بعد.
 لا تُرقّى حالة أي أمر إلى IMPLEMENTED أو TESTED أو VERIFIED إلا بدليل مُنفَّذ ومرفق،
 وفق سلّم الحالات في `SKETCH_DESIGN_PRODUCTION_EXECUTION_MASTER_V2.md`.

@@ -4,7 +4,7 @@
 Output: SKETCH_DESIGN_EXECUTION.md at the repository root.
 
 Everything needed to execute, in order, in a single document: the operating
-rules every prompt binds to, what blocks the start, all 21 prompts in sequence,
+rules every prompt binds to, what blocks the start, every prompt in sequence,
 and the registries. The twelve companion specifications stay as separate files
 and are linked from the appendix, because inlining them would bury the prompts.
 """
@@ -149,7 +149,7 @@ def main():
     A("")
     A("# SKETCH DESIGN — EXECUTION")
     A("")
-    A("**حزمة التنفيذ كاملة في ملف واحد.** القواعد، ثم ما يحجب البدء، ثم الأوامر الواحد والعشرون بالترتيب، ثم السجلات.")
+    A("**حزمة التنفيذ كاملة في ملف واحد.** القواعد، ثم ما يحجب البدء، ثم الأوامر بالترتيب، ثم السجلات.")
     A("")
     A("| | |")
     A("| --- | --- |")
@@ -175,7 +175,7 @@ def main():
     A("| --- | --- |")
     A("| [الجزء 1 — قواعد التشغيل](#part-1) | تُقيّد كل أمر. اقرأها قبل أي تنفيذ |")
     A("| [الجزء 2 — ما يحجب البدء](#part-2) | القرارات المفتوحة، وأيها يوقف أي أمر |")
-    A("| [الجزء 3 — الأوامر بالترتيب](#part-3) | الواحد والعشرون أمرًا، كل منها باثني عشر عنصرًا |")
+    A("| [الجزء 3 — الأوامر بالترتيب](#part-3) | %d أمرًا، كل منها باثني عشر عنصرًا |" % len(PROMPTS))
     A("| [الملحق أ — سجل المصادر](#appendix-a) | ما وصل، وما لم يصل |")
     A("| [الملحق ب — سجل القرارات](#appendix-b) | بحالاته الأصلية حرفيًا |")
     A("| [الملحق ج — أين التفصيل](#appendix-c) | المواصفات الاثنتا عشرة |")
